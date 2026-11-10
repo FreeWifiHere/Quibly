@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5f2ea" />
+    <title>Quibly — study, but make it a game</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="/" aria-label="Quibly home">
+          <span class="brand-mark">Q</span>
+          <span>quibly</span>
+        </a>
+        <div class="header-note"><span class="status-dot"></span> study, but make it a game</div>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <p class="eyebrow">VERSION 1 · YOUR NOTES IN, A GAME OUT</p>
+            <h1 id="hero-title">Make studying feel<br /><em>less boring.</em></h1>
+            <p class="hero-subtitle">Turn your own notes into a quick quiz with rewards, challenges, and a little more energy.</p>
+            <div class="hero-stats" aria-label="Quibly highlights">
+              <span><strong>01</strong> paste notes</span>
+              <span class="stat-arrow">→</span>
+              <span><strong>02</strong> play a round</span>
+            </div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="orbit orbit-one"></div>
+            <div class="orbit orbit-two"></div>
+            <div class="game-ticket ticket-main"><span>+10 XP</span><strong>YOU GOT THIS</strong><small>one question at a time</small></div>
+            <div class="game-ticket ticket-small"><span>✦</span><strong>PLAY</strong></div>
+          </div>
+        </section>
+
+        <section class="workspace" aria-label="Quibly study game builder">
+          <div class="builder-card panel-card">
+            <div class="card-heading">
+              <div>
+                <p class="eyebrow">YOUR FIRST ROUND</p>
+                <h2>Build a study game</h2>
+              </div>
+              <span class="step-badge">1 / 1</span>
+            </div>
+
+            <form id="builder-form">
+              <div class="field-group">
+                <label for="goal">What are you studying?</label>
+                <input id="goal" name="goal" type="text" placeholder="e.g. the water cycle" autocomplete="off" />
+              </div>
+
+              <div class="field-group">
+                <div class="label-row">
+                  <label for="notes">Paste or type your notes</label>
+                  <span class="required-label">required</span>
+                </div>
+                <textarea id="notes" name="notes" rows="8" placeholder="Paste a few lines from your notes here…"></textarea>
+                <div class="sample-row" aria-label="Sample notes">
+                  <span class="sample-label">Try a sample:</span>
+                  <button type="button" class="text-button" data-sample="sample-water-cycle">Water cycle</button>
+                  <button type="button" class="text-button" data-sample="sample-fractions">Fractions</button>
+                  <button type="button" class="text-button" data-sample="sample-ecosystems">Ecosystems</button>
+                </div>
+              </div>
+
+              <div class="field-group compact-field">
+                <label for="game-style">Pick your game vibe</label>
+                <select id="game-style" name="gameStyle">
+                  <option>Quick quiz</option>
+                  <option>Flashcard sprint</option>
+                  <option>Challenge mode</option>
+                </select>
+              </div>
+
+              <button class="primary-button" id="generate-button" type="submit">
+                <span>Build my game</span><span class="button-arrow">↗</span>
+              </button>
+              <div class="thinking-state" id="thinking-state" hidden><span class="spinner"></span> Thinking…</div>
+              <p class="privacy-note"><span aria-hidden="true">✦</span> Your notes go to the AI only when you press the button. Your key stays on this computer.</p>
+              <p class="form-message" id="form-message" role="status"></p>
+            </form>
+          </div>
+
+          <aside class="side-stack">
+            <section class="library-card panel-card" aria-labelledby="library-title">
+              <div class="card-heading small-heading">
+                <div>
+                  <p class="eyebrow">BROWSER SAVE</p>
+                  <h2 id="library-title">My games</h2>
+                </div>
+                <span class="library-icon">⌁</span>
+              </div>
+              <div id="library-list" class="library-list"></div>
+              <p class="local-note">Saves on this computer only for now.</p>
+            </section>
+
+            <section class="care-card panel-card" aria-labelledby="care-title">
+              <div class="care-icon">♥</div>
+              <div>
+                <p class="eyebrow">BUILT WITH CARE</p>
+                <h2 id="care-title">Friendly by default.</h2>
+                <p>Quibly uses your notes, keeps answers short, and reminds you that breaks count too.</p>
+              </div>
+            </section>
+          </aside>
+        </section>
+
+        <section class="results-card panel-card" id="results-panel" hidden aria-live="polite">
+          <div class="results-topline">
+            <div>
+              <p class="eyebrow">YOUR GAME IS READY</p>
+              <h2 id="game-title">Study game</h2>
+              <p id="game-tagline" class="game-tagline"></p>
+            </div>
+            <div class="score-pill" id="score-pill">0 / 0 XP</div>
+          </div>
+          <div class="progress-track"><span id="progress-bar"></span></div>
+          <div id="questions-list" class="questions-list"></div>
+          <div class="results-footer"><span>Nice work. Take a small break when you finish.</span><button type="button" class="secondary-button" id="new-game-button">Make another game</button></div>
+        </section>
+      </main>
+
+      <footer class="site-footer"><span>quibly / a small study-game experiment</span><span>made for the Presidential SI Challenge</span></footer>
+    </div>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
