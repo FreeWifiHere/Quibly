@@ -16,6 +16,7 @@ Then open http://127.0.0.1:8000 in a browser.
 - The visual system now uses softer mint, peach, lavender, and navy colors with a rounder, friendlier type hierarchy.
 - The OpenAI key is read only by the local server from `.env`; it is never sent to the page.
 - The AI receives the full project brief from `BRIEF.md` as its instructions on every game request.
+- AI instructions now treat uploaded text as untrusted content, stay grounded in the notes, handle off-topic and unsafe requests safely, and avoid silently adding outside facts.
 - Sample notes and generated games save in browser localStorage through one small file: `public/storage.js`.
 - Saves on this computer only for now.
 - OpenAI model: `gpt-5.6-luna`.
