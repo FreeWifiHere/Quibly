@@ -3,6 +3,9 @@ import { getSampleSets, getStudySets, saveStudySet } from "./storage.js";
 const form = document.querySelector("#builder-form");
 const goalInput = document.querySelector("#goal");
 const notesInput = document.querySelector("#notes");
+const notesFileInput = document.querySelector("#notes-file");
+const uploadZone = document.querySelector("#upload-zone");
+const fileStatus = document.querySelector("#file-status");
 const styleInput = document.querySelector("#game-style");
 const generateButton = document.querySelector("#generate-button");
 const thinkingState = document.querySelector("#thinking-state");
@@ -55,8 +58,44 @@ function fillSample(sampleId) {
   goalInput.value = sample.goal;
   notesInput.value = sample.notes;
   styleInput.value = sample.gameStyle;
+  fileStatus.textContent = "Sample notes loaded";
   notesInput.focus();
   setMessage("Sample loaded — edit it or build the game as-is.");
+}
+
+async function loadNotesFile(file) {
+  if (!file) return;
+  const fileName = file.name.toLowerCase();
+  const supported = fileName.endsWith(".txt") || fileName.endsWith(".md") || fileName.endsWith(".text") || file.type === "text/plain" || file.type === "text/markdown";
+  if (!supported) {
+    fileStatus.textContent = "Please choose a TXT or MD file.";
+    setMessage("Quibly can read TXT and MD notes files for now.");
+    return;
+  }
+
+  try {
+    const text = (await file.text()).trim();
+    if (!text) {
+      fileStatus.textContent = "That file is empty.";
+      setMessage("Choose a notes file with a little text in it.");
+      return;
+    }
+    if (text.length > 24000) {
+      fileStatus.textContent = "That file is too large for Version 1.";
+      setMessage("Please choose a notes file under 24,000 characters.");
+      return;
+    }
+    notesInput.value = text;
+    if (!goalInput.value.trim()) {
+      goalInput.value = file.name.replace(/\.(txt|md|text)$/i, "").replace(/[-_]+/g, " ");
+    }
+    fileStatus.textContent = `Loaded ${file.name}`;
+    setMessage("Notes loaded — press Build my game to make the quiz.");
+    notesInput.focus();
+  } catch {
+    fileStatus.textContent = "Could not read that file.";
+    setMessage("Quibly could not read the file. Try a TXT or MD file.");
+  }
 }
 
 function updateScore() {
@@ -190,6 +229,18 @@ function loadSavedGame(setId) {
 
 document.querySelectorAll("[data-sample]").forEach((button) => {
   button.addEventListener("click", () => fillSample(button.dataset.sample));
+});
+
+notesFileInput.addEventListener("change", () => loadNotesFile(notesFileInput.files?.[0]));
+uploadZone.addEventListener("dragover", (event) => {
+  event.preventDefault();
+  uploadZone.classList.add("is-dragging");
+});
+uploadZone.addEventListener("dragleave", () => uploadZone.classList.remove("is-dragging"));
+uploadZone.addEventListener("drop", (event) => {
+  event.preventDefault();
+  uploadZone.classList.remove("is-dragging");
+  loadNotesFile(event.dataTransfer.files?.[0]);
 });
 
 libraryList.addEventListener("click", (event) => {

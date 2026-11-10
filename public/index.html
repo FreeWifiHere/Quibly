@@ -55,10 +55,19 @@
 
               <div class="field-group">
                 <div class="label-row">
-                  <label for="notes">Paste or type your notes</label>
+                  <label for="notes">Paste, type, or upload your notes</label>
                   <span class="required-label">required</span>
                 </div>
                 <textarea id="notes" name="notes" rows="8" placeholder="Paste a few lines from your notes here…"></textarea>
+                <div class="upload-zone" id="upload-zone">
+                  <input class="file-input" id="notes-file" type="file" accept=".txt,.md,.text,text/plain,text/markdown" />
+                  <label class="upload-label" for="notes-file">
+                    <span class="upload-icon" aria-hidden="true">↥</span>
+                    <span class="upload-copy"><strong>Upload a notes file</strong><small>TXT or MD · drag and drop works too</small></span>
+                    <span class="upload-action">Choose file</span>
+                  </label>
+                  <p class="file-status" id="file-status" role="status">No file selected</p>
+                </div>
                 <div class="sample-row" aria-label="Sample notes">
                   <span class="sample-label">Try a sample:</span>
                   <button type="button" class="text-button" data-sample="sample-water-cycle">Water cycle</button>

@@ -86,6 +86,17 @@ input, select { height: 49px; padding: 0 14px; }
 textarea { min-height: 172px; padding: 15px; resize: vertical; line-height: 1.5; }
 input::placeholder, textarea::placeholder { color: #a2aaa3; }
 input:focus, textarea:focus, select:focus { border-color: var(--mint-deep); box-shadow: 0 0 0 4px rgba(45, 139, 104, 0.13); }
+.upload-zone { position: relative; margin-top: 12px; }
+.file-input { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; clip-path: inset(50%); }
+.upload-label { display: flex; align-items: center; gap: 12px; min-height: 66px; padding: 11px 13px; border: 1px dashed #aab9ae; border-radius: 13px; background: rgba(245, 250, 246, 0.85); cursor: pointer; transition: border-color 150ms, background 150ms, transform 150ms; }
+.upload-label:hover, .upload-zone.is-dragging .upload-label, .file-input:focus-visible + .upload-label { border-color: var(--mint-deep); background: #effbf4; }
+.upload-label:hover { transform: translateY(-1px); }
+.upload-icon { display: grid; flex: 0 0 31px; place-items: center; width: 31px; height: 31px; border-radius: 9px; background: var(--mint); color: var(--mint-deep); font-size: 1.25rem; font-weight: 900; }
+.upload-copy { display: grid; gap: 3px; flex: 1; }
+.upload-copy strong { font-size: 0.78rem; }
+.upload-copy small { color: var(--muted); font-size: 0.68rem; }
+.upload-action { padding: 7px 9px; border-radius: 7px; background: white; color: var(--mint-deep); font-size: 0.7rem; font-weight: 900; }
+.file-status { margin: 7px 0 0; color: var(--muted); font-size: 0.7rem; }
 .sample-row { display: flex; align-items: center; flex-wrap: wrap; gap: 9px; margin-top: 10px; }
 .sample-label { color: var(--muted); font-size: 0.73rem; }
 .text-button { padding: 5px 9px; border: 0; border-radius: 7px; background: rgba(188, 235, 214, 0.44); color: var(--mint-deep); font-size: 0.73rem; font-weight: 800; }
