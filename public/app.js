@@ -1,7 +1,6 @@
 import { getSampleSets, getStudySets, saveStudySet } from "./storage.js";
 
 const form = document.querySelector("#builder-form");
-const goalInput = document.querySelector("#goal");
 const notesInput = document.querySelector("#notes");
 const notesFileInput = document.querySelector("#notes-file");
 const uploadZone = document.querySelector("#upload-zone");
@@ -55,7 +54,6 @@ function escapeHtml(value) {
 function fillSample(sampleId) {
   const sample = getSampleSets().find((item) => item.id === sampleId);
   if (!sample) return;
-  goalInput.value = sample.goal;
   notesInput.value = sample.notes;
   styleInput.value = sample.gameStyle;
   fileStatus.textContent = "Sample notes loaded";
@@ -86,9 +84,6 @@ async function loadNotesFile(file) {
       return;
     }
     notesInput.value = text;
-    if (!goalInput.value.trim()) {
-      goalInput.value = file.name.replace(/\.(txt|md|text)$/i, "").replace(/[-_]+/g, " ");
-    }
     fileStatus.textContent = `Loaded ${file.name}`;
     setMessage("Notes loaded — press Build my game to make the quiz.");
     notesInput.focus();
@@ -188,7 +183,7 @@ async function createGame(event) {
     const response = await fetch("/api/generate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ notes, goal: goalInput.value.trim(), gameStyle: styleInput.value }),
+      body: JSON.stringify({ notes, gameStyle: styleInput.value }),
     });
     const data = await response.json();
     if (!response.ok || data.error) throw new Error(data.error || "The game could not be made.");
@@ -196,7 +191,7 @@ async function createGame(event) {
     saveStudySet({
       id: `game-${Date.now()}`,
       title: data.game.title || "Your study game",
-      goal: goalInput.value.trim() || "Saved notes",
+      goal: "Saved notes",
       notes,
       gameStyle: styleInput.value,
       game: data.game,
@@ -215,7 +210,6 @@ async function createGame(event) {
 function loadSavedGame(setId) {
   const saved = getStudySets().find((item) => item.id === setId);
   if (!saved) return;
-  goalInput.value = saved.goal || "";
   notesInput.value = saved.notes || "";
   styleInput.value = saved.gameStyle || "Quick quiz";
   if (saved.game) {
