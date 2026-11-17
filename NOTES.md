@@ -15,6 +15,7 @@ Then open http://127.0.0.1:8000 in a browser.
 - The layout now opens with a warmer welcome, a low-pressure start cue, and encouraging quiz feedback.
 - The visual system now uses a bright arcade palette with blue, yellow, green, orange, and purple accents, rounded cards, original CSS/SVG characters, and game-first navigation.
 - The interface now centers the homepage on playable game modes, player progress, rewards, saved study sets, and a step-by-step notes-to-game flow.
+- Progress is centralized in browser localStorage: new users start at Level 1, correct answers award 10 XP, every 100 XP levels up, and games/correct answers persist across refreshes.
 - The OpenAI key is read only by the local server from `.env`; it is never sent to the page.
 - The AI receives the full project brief from `BRIEF.md` as its instructions on every game request.
 - AI instructions now treat uploaded text as untrusted content, stay grounded in the notes, handle off-topic and unsafe requests safely, and avoid silently adding outside facts.

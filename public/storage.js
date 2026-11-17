@@ -1,4 +1,16 @@
 const STORAGE_KEY = "quibly.studySets.v1";
+const PROGRESS_STORAGE_KEY = "quibly.progress.v1";
+const PROGRESS_VERSION = 1;
+export const XP_PER_CORRECT_ANSWER = 10;
+export const XP_PER_LEVEL = 100;
+
+const DEFAULT_PROGRESS = {
+  version: PROGRESS_VERSION,
+  level: 1,
+  totalXp: 0,
+  gamesPlayed: 0,
+  correctAnswers: 0,
+};
 
 const SAMPLE_SETS = [
   {
@@ -55,4 +67,76 @@ export function saveStudySet(studySet) {
 
 export function getSampleSets() {
   return [...SAMPLE_SETS];
+}
+
+function toNonNegativeInteger(value, fallback = 0) {
+  const number = Number(value);
+  return Number.isFinite(number) && number >= 0 ? Math.floor(number) : fallback;
+}
+
+function levelForXp(totalXp) {
+  return Math.floor(totalXp / XP_PER_LEVEL) + 1;
+}
+
+function normalizeProgress(value) {
+  if (!value || typeof value !== "object") return null;
+
+  const hasProgressField = ["totalXp", "xp", "level", "gamesPlayed", "correctAnswers"].some((key) => key in value);
+  if (!hasProgressField) return null;
+
+  const totalXp = toNonNegativeInteger(value.totalXp ?? value.xp, 0);
+  const progress = {
+    version: PROGRESS_VERSION,
+    level: levelForXp(totalXp),
+    totalXp,
+    gamesPlayed: toNonNegativeInteger(value.gamesPlayed),
+    correctAnswers: toNonNegativeInteger(value.correctAnswers),
+  };
+  return progress;
+}
+
+function writeProgress(progress) {
+  try {
+    localStorage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress));
+  } catch {
+    // The UI can still use in-memory progress if storage is unavailable.
+  }
+  return progress;
+}
+
+export function getProgress() {
+  let serialized = null;
+  let stored = null;
+  try {
+    serialized = localStorage.getItem(PROGRESS_STORAGE_KEY);
+    if (serialized) stored = JSON.parse(serialized);
+  } catch {
+    stored = null;
+  }
+
+  const progress = normalizeProgress(stored) || { ...DEFAULT_PROGRESS };
+  const normalized = JSON.stringify(progress);
+  if (serialized !== normalized) writeProgress(progress);
+  return progress;
+}
+
+export function saveProgress(progress) {
+  const normalized = normalizeProgress(progress) || { ...DEFAULT_PROGRESS };
+  return writeProgress(normalized);
+}
+
+export function recordGamePlayed() {
+  const current = getProgress();
+  return saveProgress({ ...current, gamesPlayed: current.gamesPlayed + 1 });
+}
+
+export function recordCorrectAnswer() {
+  const current = getProgress();
+  const nextTotalXp = current.totalXp + XP_PER_CORRECT_ANSWER;
+  const next = saveProgress({
+    ...current,
+    totalXp: nextTotalXp,
+    correctAnswers: current.correctAnswers + 1,
+  });
+  return { progress: next, leveledUp: next.level > current.level };
 }

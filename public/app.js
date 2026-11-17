@@ -1,4 +1,4 @@
-import { getSampleSets, getStudySets, saveStudySet } from "./storage.js";
+import { getProgress, getSampleSets, getStudySets, recordCorrectAnswer, recordGamePlayed, saveStudySet } from "./storage.js";
 
 const form = document.querySelector("#builder-form");
 const notesInput = document.querySelector("#notes");
@@ -17,13 +17,51 @@ const scorePill = document.querySelector("#score-pill");
 const progressBar = document.querySelector("#progress-bar");
 const libraryList = document.querySelector("#library-list");
 const newGameButton = document.querySelector("#new-game-button");
+const headerPlayerLevel = document.querySelector("#header-player-level");
+const playerLevelBadge = document.querySelector("#player-level-badge");
+const playerLevel = document.querySelector("#player-level");
+const playerXpBar = document.querySelector("#player-xp-bar");
+const playerXp = document.querySelector("#player-xp");
+const gamesPlayed = document.querySelector("#games-played");
+const correctAnswers = document.querySelector("#correct-answers");
+const levelUpToast = document.querySelector("#level-up-toast");
+const levelUpCopy = document.querySelector("#level-up-copy");
+const levelUpDismiss = document.querySelector(".level-up-dismiss");
 
 let currentScore = 0;
 let answeredCount = 0;
 let totalQuestions = 0;
+let gameSessionCounted = false;
+let levelUpTimer;
 
 function setMessage(message = "") {
   formMessage.textContent = message;
+}
+
+function updateProgressUI(progress = getProgress()) {
+  const xpIntoLevel = progress.totalXp % 100;
+  const nextLevelXp = 100 - xpIntoLevel;
+  headerPlayerLevel.textContent = `Lv. ${progress.level}`;
+  playerLevelBadge.textContent = progress.level;
+  playerLevel.textContent = `Level ${progress.level}`;
+  playerXp.textContent = `${xpIntoLevel} / 100 XP`;
+  playerXpBar.style.width = `${xpIntoLevel}%`;
+  gamesPlayed.textContent = progress.gamesPlayed;
+  correctAnswers.textContent = progress.correctAnswers;
+  playerXpBar.setAttribute("aria-label", `${xpIntoLevel} XP toward Level ${progress.level + 1}; ${nextLevelXp} XP to go`);
+}
+
+function showLevelUp(level) {
+  if (!levelUpToast) return;
+  levelUpCopy.textContent = `You reached Level ${level}. Keep the streak going!`;
+  levelUpToast.hidden = false;
+  levelUpToast.classList.remove("is-visible");
+  requestAnimationFrame(() => levelUpToast.classList.add("is-visible"));
+  window.clearTimeout(levelUpTimer);
+  levelUpTimer = window.setTimeout(() => {
+    levelUpToast.classList.remove("is-visible");
+    window.setTimeout(() => { levelUpToast.hidden = true; }, 250);
+  }, 4200);
 }
 
 function renderLibrary() {
@@ -103,6 +141,7 @@ function renderGame(game) {
   currentScore = 0;
   answeredCount = 0;
   totalQuestions = Array.isArray(game.questions) ? game.questions.length : 0;
+  gameSessionCounted = false;
   gameTitle.textContent = game.title || "Your study game";
   gameTagline.textContent = game.tagline || "A quick round made from your notes.";
   questionsList.innerHTML = "";
@@ -140,10 +179,17 @@ function renderGame(game) {
       optionButton.addEventListener("click", () => {
         if (card.dataset.answered) return;
         card.dataset.answered = "true";
+        if (!gameSessionCounted) {
+          updateProgressUI(recordGamePlayed());
+          gameSessionCounted = true;
+        }
         answeredCount += 1;
         const isCorrect = option.trim().toLowerCase() === answer.toLowerCase();
         if (isCorrect) {
           currentScore += 10;
+          const result = recordCorrectAnswer();
+          updateProgressUI(result.progress);
+          if (result.leveledUp) showLevelUp(result.progress.level);
           optionButton.classList.add("correct");
           feedback.textContent = `Correct! ${question.explanation || "That matches your notes."}`;
         } else {
@@ -248,6 +294,12 @@ newGameButton.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
+levelUpDismiss.addEventListener("click", () => {
+  window.clearTimeout(levelUpTimer);
+  levelUpToast.classList.remove("is-visible");
+  window.setTimeout(() => { levelUpToast.hidden = true; }, 250);
+});
+
 document.querySelectorAll("[data-nav-link]").forEach((link) => {
   link.addEventListener("click", () => {
     document.querySelectorAll("[data-nav-link]").forEach((item) => item.classList.toggle("is-active", item === link));
@@ -265,4 +317,5 @@ document.querySelectorAll("[data-game-style]").forEach((button) => {
 });
 
 form.addEventListener("submit", createGame);
+updateProgressUI();
 renderLibrary();

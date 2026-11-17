@@ -27,6 +27,7 @@
           <span class="header-divider"></span>
           <span class="header-avatar">V</span>
           <span class="header-player-name">Vincent</span>
+          <span class="header-level" id="header-player-level">Lv. 1</span>
           <span class="header-chevron">⌄</span>
         </div>
       </header>
@@ -60,12 +61,12 @@
 
         <section class="player-strip" id="profile-card" aria-label="Player progress">
           <div class="player-summary">
-            <div class="large-avatar"><span>V</span><i>7</i></div>
-            <div class="player-copy"><span class="player-overline">YOUR PLAYER</span><strong>Hey, Vincent!</strong><div class="xp-line"><span>Level 7</span><div class="xp-track"><i></i></div><span>620 / 800 XP</span></div></div>
+            <div class="large-avatar"><span>V</span><i id="player-level-badge">1</i></div>
+            <div class="player-copy"><span class="player-overline">YOUR PLAYER</span><strong>Hey, Vincent!</strong><div class="xp-line"><span id="player-level">Level 1</span><div class="xp-track"><i id="player-xp-bar"></i></div><span id="player-xp">0 / 100 XP</span></div></div>
           </div>
           <div class="strip-divider"></div>
-          <div class="strip-stat"><span class="strip-icon streak-icon">↗</span><span><small>STUDY STREAK</small><strong>3 days</strong></span></div>
-          <div class="strip-stat"><span class="strip-icon reward-icon">✦</span><span><small>DAILY REWARD</small><strong>+25 XP ready</strong></span></div>
+          <div class="strip-stat"><span class="strip-icon streak-icon">↗</span><span><small>GAMES PLAYED</small><strong id="games-played">0</strong></span></div>
+          <div class="strip-stat"><span class="strip-icon reward-icon">✦</span><span><small>CORRECT ANSWERS</small><strong id="correct-answers">0</strong></span></div>
           <a class="strip-link" href="#rewards-section">View rewards <span>→</span></a>
         </section>
 
@@ -148,6 +149,11 @@
       </main>
 
       <footer class="site-footer"><span>quibly / study, play, level up</span><span>made for the Presidential SI Challenge <i aria-hidden="true">✦</i></span></footer>
+    </div>
+    <div class="level-up-toast" id="level-up-toast" hidden role="status" aria-live="polite">
+      <span class="level-up-icon" aria-hidden="true">★</span>
+      <span class="level-up-copy"><strong>Level up!</strong><small id="level-up-copy">You reached a new level.</small></span>
+      <button class="level-up-dismiss" type="button" aria-label="Dismiss level-up message">×</button>
     </div>
     <script type="module" src="/app.js"></script>
   </body>
