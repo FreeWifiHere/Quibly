@@ -248,5 +248,21 @@ newGameButton.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
+document.querySelectorAll("[data-nav-link]").forEach((link) => {
+  link.addEventListener("click", () => {
+    document.querySelectorAll("[data-nav-link]").forEach((item) => item.classList.toggle("is-active", item === link));
+  });
+});
+
+document.querySelectorAll("[data-game-style]").forEach((button) => {
+  button.addEventListener("click", () => {
+    styleInput.value = button.dataset.gameStyle;
+    document.querySelectorAll("[data-game-style]").forEach((item) => item.classList.toggle("is-selected", item === button));
+    document.querySelector("#create-section").scrollIntoView({ behavior: "smooth", block: "start" });
+    setMessage(`${styleInput.value} selected — add notes to build your round.`);
+    notesInput.focus({ preventScroll: true });
+  });
+});
+
 form.addEventListener("submit", createGame);
 renderLibrary();

@@ -3,174 +3,151 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#080b14" />
-    <title>Quibly — your study game desk</title>
+    <meta name="theme-color" content="#2d8cff" />
+    <title>Quibly — study, play, level up</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <div class="app-shell">
-      <aside class="sidebar" aria-label="Primary navigation">
-        <a class="brand" href="#workspace-section" aria-label="Quibly study desk">
+    <div class="game-app">
+      <header class="game-header">
+        <a class="brand" href="#home-section" aria-label="Quibly home">
           <span class="brand-mark">Q</span>
-          <span class="brand-word">quibly<span class="brand-dot">.</span></span>
+          <span class="brand-word">quibly<span>.</span></span>
         </a>
-
-        <div class="sidebar-divider"></div>
-        <p class="sidebar-kicker">Workspace</p>
-        <nav class="main-nav" aria-label="Quibly sections">
-          <a class="nav-item is-active" href="#workspace-section">
-            <span class="nav-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M4 5.75A1.75 1.75 0 0 1 5.75 4h4.5A1.75 1.75 0 0 1 12 5.75v4.5A1.75 1.75 0 0 1 10.25 12h-4.5A1.75 1.75 0 0 1 4 10.25v-4.5ZM12 13.75A1.75 1.75 0 0 1 13.75 12h4.5A1.75 1.75 0 0 1 20 13.75v4.5A1.75 1.75 0 0 1 18.25 20h-4.5A1.75 1.75 0 0 1 12 18.25v-4.5Z" stroke="currentColor" stroke-width="1.7"/><path d="M14 4h5M16.5 1.5v5M7 15v3M5.5 16.5h3" stroke="currentColor" stroke-linecap="round" stroke-width="1.7"/></svg>
-            </span>
-            <span>Study desk</span>
-            <span class="nav-shortcut">01</span>
-          </a>
-          <a class="nav-item" href="#builder-card">
-            <span class="nav-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M5 4.5h14A1.5 1.5 0 0 1 20.5 6v12a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 18V6A1.5 1.5 0 0 1 5 4.5Z" stroke="currentColor" stroke-width="1.7"/><path d="M7 8h10M7 12h6M7 16h3" stroke="currentColor" stroke-linecap="round" stroke-width="1.7"/></svg>
-            </span>
-            <span>New study round</span>
-          </a>
-          <a class="nav-item" href="#library-card">
-            <span class="nav-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M5 5.5A1.5 1.5 0 0 1 6.5 4h11A1.5 1.5 0 0 1 19 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 18.5v-13Z" stroke="currentColor" stroke-width="1.7"/><path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-linecap="round" stroke-width="1.7"/></svg>
-            </span>
-            <span>My library</span>
-          </a>
+        <nav class="primary-nav" aria-label="Main navigation">
+          <a class="nav-link is-active" href="#home-section" data-nav-link>Home</a>
+          <a class="nav-link" href="#play-section" data-nav-link>Play</a>
+          <a class="nav-link" href="#sets-section" data-nav-link>My Study Sets</a>
+          <a class="nav-link" href="#create-section" data-nav-link>Create</a>
+          <a class="nav-link" href="#rewards-section" data-nav-link>Rewards</a>
+          <a class="nav-link" href="#profile-card" data-nav-link>Profile</a>
         </nav>
-
-        <div class="sidebar-spacer"></div>
-        <div class="sidebar-coach">
-          <span class="coach-orb" aria-hidden="true">✦</span>
-          <strong>Small rounds add up.</strong>
-          <p>Upload a few notes whenever you have five quiet minutes.</p>
+        <div class="header-player">
+          <button class="header-icon" type="button" aria-label="No new notifications"><svg viewBox="0 0 24 24" fill="none"><path d="M18 9.5a6 6 0 0 0-12 0c0 7-3 7-3 8.5h18C21 16.5 18 16.5 18 9.5ZM10 21h4" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"/></svg></button>
+          <span class="header-divider"></span>
+          <span class="header-avatar">V</span>
+          <span class="header-player-name">Vincent</span>
+          <span class="header-chevron">⌄</span>
         </div>
-        <div class="profile-chip">
-          <span class="profile-avatar">V</span>
-          <span class="profile-copy"><strong>Local learner</strong><small>saved on this device</small></span>
-          <span class="profile-more" aria-hidden="true">•••</span>
-        </div>
-      </aside>
+      </header>
 
-      <main class="main-content">
-        <header class="topbar">
-          <div class="mobile-brand"><span class="brand-mark">Q</span><span class="brand-word">quibly<span class="brand-dot">.</span></span></div>
-          <div class="breadcrumbs"><span>Workspace</span><span class="crumb-separator">/</span><strong>Study desk</strong></div>
-          <div class="topbar-actions">
-            <span class="engine-status"><span class="status-dot"></span>AI engine ready</span>
-            <button class="icon-button" type="button" aria-label="Quibly is a local study game builder">?</button>
-            <span class="top-avatar" aria-label="Local learner">V</span>
+      <main>
+        <section class="hero-game" id="home-section" aria-labelledby="hero-title">
+          <div class="hero-game-copy">
+            <div class="hero-badge"><span class="badge-dot"></span> QUIBLY ARCADE <span class="badge-divider"></span> AI STUDY GAMES</div>
+            <h1 id="hero-title">Study.<br /><span>Play.</span><br />Level up.</h1>
+            <p>Turn the notes you already have into colorful rounds, clever challenges, and small wins that make learning stick.</p>
+            <div class="hero-actions">
+              <a class="play-now-button" href="#play-section">Play now <span aria-hidden="true">▶</span></a>
+              <a class="upload-notes-button" href="#create-section"><span aria-hidden="true">＋</span> Upload notes</a>
+            </div>
+            <div class="hero-proof"><span class="proof-avatars"><i>Q</i><i>✦</i><i>V</i></span><span>One friendly round at a time.</span></div>
           </div>
-        </header>
-
-        <div class="content-shell">
-          <section class="hero" id="workspace-section" aria-labelledby="hero-title">
-            <div class="hero-copy">
-              <div class="hero-kicker"><span class="live-pulse"></span> A QUIET PLACE TO FOCUS</div>
-              <h1 id="hero-title">Make studying<br /><span>feel like play.</span></h1>
-              <p class="hero-subtitle">Drop in your notes. Quibly turns them into a focused little game, so you can learn one clear idea at a time.</p>
-              <div class="hero-actions">
-                <a class="primary-link" href="#builder-card">Start a study round <span aria-hidden="true">↗</span></a>
-                <span class="hero-meta"><span class="meta-check">✓</span> no account needed</span>
-              </div>
+          <div class="hero-arcade" aria-label="Quibly game characters">
+            <div class="arcade-sun"></div>
+            <div class="arcade-cloud cloud-one"></div><div class="arcade-cloud cloud-two"></div>
+            <div class="arcade-shadow"></div>
+            <div class="hero-character hero-character-blue">
+              <svg viewBox="0 0 180 205" fill="none" aria-hidden="true"><path d="M38 80c-8-26 8-51 34-58 29-8 60 6 70 32 6 15 4 34-5 47l-2 49c0 22-17 39-39 39H75c-21 0-37-17-37-38V80Z" fill="#438dff"/><path d="M42 82c-8-21 3-42 22-53 18-11 44-10 61 4 14 11 21 30 16 48-5 17-18 26-34 31-22 7-55-6-65-30Z" fill="#67adff"/><path d="M54 105c0-18 14-32 32-32h12c18 0 32 14 32 32v12c0 18-14 32-32 32H86c-18 0-32-14-32-32v-12Z" fill="#f7fbff"/><circle cx="78" cy="111" r="7" fill="#173866"/><circle cx="107" cy="111" r="7" fill="#173866"/><path d="M81 130c8 7 17 7 25 0" stroke="#173866" stroke-linecap="round" stroke-width="4"/><path d="m38 78-18-13M140 78l18-14" stroke="#2b72d6" stroke-linecap="round" stroke-width="10"/><path d="M70 153v31M111 153v31" stroke="#173866" stroke-linecap="round" stroke-width="10"/><path d="M61 188h18M102 188h18" stroke="#ffcf4d" stroke-linecap="round" stroke-width="8"/><path d="m86 50 4-10 4 10 11 2-9 7 2 11-8-6-9 6 2-11-9-7 12-2Z" fill="#ffe37d"/></svg>
             </div>
-            <div class="hero-scene" aria-hidden="true">
-              <div class="scene-grid"></div>
-              <div class="scene-ring scene-ring-one"></div>
-              <div class="scene-ring scene-ring-two"></div>
-              <div class="scene-core">
-                <span class="core-spark">✦</span>
-                <span class="core-label">FOCUS MODE</span>
-                <strong>+10 XP</strong>
-                <small>one answer at a time</small>
-              </div>
-              <div class="floating-card floating-card-top"><span class="floating-icon">↗</span><span><strong>Notes in</strong><small>Ideas out</small></span></div>
-              <div class="floating-card floating-card-bottom"><span class="mini-bars"><i></i><i></i><i></i><i></i></span><span><strong>Ready when you are</strong><small>low-pressure learning</small></span></div>
+            <div class="hero-character hero-character-orange">
+              <svg viewBox="0 0 120 145" fill="none" aria-hidden="true"><path d="M22 62c0-25 17-44 39-44s38 19 38 44v37c0 17-12 30-28 30H50c-16 0-28-13-28-30V62Z" fill="#ff985e"/><path d="M30 58c3-19 16-31 31-31 16 0 28 12 31 31-15-7-45-7-62 0Z" fill="#ffc064"/><circle cx="47" cy="70" r="5" fill="#183052"/><circle cx="74" cy="70" r="5" fill="#183052"/><path d="M50 88c7 6 14 6 21 0" stroke="#183052" stroke-linecap="round" stroke-width="3.5"/><path d="M33 112v17M87 112v17" stroke="#183052" stroke-linecap="round" stroke-width="8"/><path d="M25 38 12 24M94 38l13-14" stroke="#ff985e" stroke-linecap="round" stroke-width="7"/><path d="m60 7 3 7 8 1-6 5 2 8-7-4-7 4 2-8-6-5 8-1 3-7Z" fill="#fff2a8"/></svg>
             </div>
-          </section>
+            <div class="hero-score-card"><span class="score-card-icon">✦</span><span><strong>+40 XP</strong><small>ready to earn</small></span></div>
+            <div class="hero-mode-card"><span class="mode-mini-icon">⚡</span><span><strong>Quick Quiz</strong><small>4 rounds waiting</small></span></div>
+          </div>
+        </section>
 
-          <section class="ritual-row" aria-label="How a Quibly study round works">
-            <article class="ritual-step"><span class="ritual-index">01</span><div><strong>Bring your notes</strong><p>Paste, type, or upload a TXT / MD file.</p></div><span class="ritual-arrow">↗</span></article>
-            <article class="ritual-step"><span class="ritual-index">02</span><div><strong>Choose your rhythm</strong><p>Pick a quick quiz, sprint, or challenge.</p></div><span class="ritual-arrow">↗</span></article>
-            <article class="ritual-step"><span class="ritual-index">03</span><div><strong>Play your round</strong><p>Get instant feedback and earn momentum.</p></div><span class="ritual-arrow">↗</span></article>
-          </section>
+        <section class="player-strip" id="profile-card" aria-label="Player progress">
+          <div class="player-summary">
+            <div class="large-avatar"><span>V</span><i>7</i></div>
+            <div class="player-copy"><span class="player-overline">YOUR PLAYER</span><strong>Hey, Vincent!</strong><div class="xp-line"><span>Level 7</span><div class="xp-track"><i></i></div><span>620 / 800 XP</span></div></div>
+          </div>
+          <div class="strip-divider"></div>
+          <div class="strip-stat"><span class="strip-icon streak-icon">↗</span><span><small>STUDY STREAK</small><strong>3 days</strong></span></div>
+          <div class="strip-stat"><span class="strip-icon reward-icon">✦</span><span><small>DAILY REWARD</small><strong>+25 XP ready</strong></span></div>
+          <a class="strip-link" href="#rewards-section">View rewards <span>→</span></a>
+        </section>
 
-          <section class="workspace-grid" aria-label="Quibly study game builder">
-            <div class="builder-card panel-card" id="builder-card">
-              <div class="builder-topline"><span class="section-chip blue-chip">01 / CREATE</span><span class="card-meta">takes about 2 minutes</span></div>
-              <div class="card-heading">
-                <div>
-                  <p class="eyebrow">YOUR STUDY MATERIAL</p>
-                  <h2>Drop in your notes.</h2>
-                  <p class="card-intro">Quibly will find the topic and shape a playable round around what you already know.</p>
+        <section class="section-block" id="play-section" aria-labelledby="games-title">
+          <div class="section-heading"><div><span class="section-kicker">PICK YOUR ADVENTURE</span><h2 id="games-title">What are we playing today?</h2></div><span class="game-count">4 game modes <b>•</b> endless retries</span></div>
+          <div class="game-grid">
+            <article class="mode-card mode-dungeon">
+              <div class="mode-card-top"><span class="mode-label">QUEST</span><span class="difficulty">★ ★ ☆</span></div>
+              <div class="mode-illustration"><div class="spark spark-a">✦</div><div class="dungeon-door"><span></span><i></i></div><div class="mini-hero mini-purple"><b></b><i></i></div></div>
+              <div class="mode-card-copy"><h3>Dungeon Quest</h3><p>Answer to unlock spells and explore the next room.</p></div>
+              <button class="mode-button" type="button" data-game-style="Challenge mode">Play this mode <span>→</span></button>
+            </article>
+            <article class="mode-card mode-defense">
+              <div class="mode-card-top"><span class="mode-label">STRATEGY</span><span class="difficulty">★ ★ ★</span></div>
+              <div class="mode-illustration"><div class="defense-sun"></div><div class="tower tower-one"><i></i></div><div class="tower tower-two"><i></i></div><div class="shield-character"><b></b><i></i></div></div>
+              <div class="mode-card-copy"><h3>Knowledge Defense</h3><p>Build your base and earn upgrades with every answer.</p></div>
+              <button class="mode-button" type="button" data-game-style="Challenge mode">Play this mode <span>→</span></button>
+            </article>
+            <article class="mode-card mode-runner">
+              <div class="mode-card-top"><span class="mode-label">SPEED RUN</span><span class="difficulty">★ ☆ ☆</span></div>
+              <div class="mode-illustration"><div class="runner-cloud cloud-small-one"></div><div class="runner-cloud cloud-small-two"></div><div class="runner-track"></div><div class="runner-character"><b></b><i></i></div><div class="runner-flag">▸</div></div>
+              <div class="mode-card-copy"><h3>Brain Runner</h3><p>Hit checkpoints, grab power-ups, and keep your streak alive.</p></div>
+              <button class="mode-button" type="button" data-game-style="Quick quiz">Play this mode <span>→</span></button>
+            </article>
+            <article class="mode-card mode-monsters">
+              <div class="mode-card-top"><span class="mode-label">COLLECT</span><span class="difficulty">★ ★ ☆</span></div>
+              <div class="mode-illustration"><div class="monster-planet"></div><div class="monster-character"><b></b><i></i><em></em></div><div class="monster-star">✦</div></div>
+              <div class="mode-card-copy"><h3>Study Monsters</h3><p>Collect clever creatures and unlock new abilities.</p></div>
+              <button class="mode-button" type="button" data-game-style="Flashcard sprint">Play this mode <span>→</span></button>
+            </article>
+          </div>
+        </section>
+
+        <section class="featured-banner" aria-label="Featured Quibly challenge">
+          <div class="featured-art"><div class="featured-bubble bubble-one"></div><div class="featured-bubble bubble-two"></div><div class="featured-monster"><b></b><i></i><em></em></div></div>
+          <div class="featured-copy"><span class="section-kicker">FEATURED CHALLENGE</span><h2>Turn five minutes<br />into a win streak.</h2><p>Start with a sample set if you want a quick warm-up.</p></div>
+          <a class="featured-button" href="#create-section">Try a sample <span>→</span></a>
+        </section>
+
+        <section class="study-grid" id="sets-section" aria-label="Create and save study games">
+          <section class="create-card" id="create-section" aria-labelledby="create-title">
+            <div class="create-header"><div><span class="section-kicker">BUILD YOUR OWN GAME</span><h2 id="create-title">Your notes,<br /><span>your rules.</span></h2></div><span class="create-badge">AI POWERED</span></div>
+            <div class="creation-steps" aria-label="Game creation steps"><span class="creation-step active"><b>1</b> Notes</span><i></i><span class="creation-step"><b>2</b> AI round</span><i></i><span class="creation-step"><b>3</b> Play</span></div>
+            <form id="builder-form">
+              <div class="field-group notes-field">
+                <div class="label-row"><label for="notes">Paste, type, or upload your notes</label><span class="required-label">required</span></div>
+                <textarea id="notes" name="notes" rows="7" placeholder="Paste a few lines from class here…"></textarea>
+                <div class="upload-zone" id="upload-zone">
+                  <input class="file-input" id="notes-file" type="file" accept=".txt,.md,.text,text/plain,text/markdown" />
+                  <label class="upload-label" for="notes-file"><span class="upload-icon" aria-hidden="true">↥</span><span class="upload-copy"><strong>Upload a notes file</strong><small>TXT or MD · drag and drop works too</small></span><span class="upload-action">Choose file <span aria-hidden="true">↗</span></span></label>
+                  <p class="file-status" id="file-status" role="status">No file selected</p>
                 </div>
-                <span class="heading-spark" aria-hidden="true">✦</span>
+                <div class="sample-row" aria-label="Sample notes"><span class="sample-label">Try a sample:</span><button type="button" class="text-button" data-sample="sample-water-cycle">Water cycle</button><button type="button" class="text-button" data-sample="sample-fractions">Fractions</button><button type="button" class="text-button" data-sample="sample-ecosystems">Ecosystems</button></div>
               </div>
-
-              <form id="builder-form">
-                <div class="field-group notes-field">
-                  <div class="label-row">
-                    <label for="notes">Paste, type, or upload your notes</label>
-                    <span class="required-label">required</span>
-                  </div>
-                  <textarea id="notes" name="notes" rows="8" placeholder="Paste a few lines from your notes here…"></textarea>
-                  <div class="upload-zone" id="upload-zone">
-                    <input class="file-input" id="notes-file" type="file" accept=".txt,.md,.text,text/plain,text/markdown" />
-                    <label class="upload-label" for="notes-file">
-                      <span class="upload-icon" aria-hidden="true">↥</span>
-                      <span class="upload-copy"><strong>Upload a notes file</strong><small>TXT or MD · drag and drop works too</small></span>
-                      <span class="upload-action">Choose file <span aria-hidden="true">↗</span></span>
-                    </label>
-                    <p class="file-status" id="file-status" role="status">No file selected</p>
-                  </div>
-                  <div class="sample-row" aria-label="Sample notes">
-                    <span class="sample-label">Need a starting point?</span>
-                    <button type="button" class="text-button" data-sample="sample-water-cycle">Water cycle</button>
-                    <button type="button" class="text-button" data-sample="sample-fractions">Fractions</button>
-                    <button type="button" class="text-button" data-sample="sample-ecosystems">Ecosystems</button>
-                  </div>
-                </div>
-
-                <div class="field-group compact-field">
-                  <div class="label-row"><label for="game-style">Choose your game vibe</label><span class="field-hint">you can change this anytime</span></div>
-                  <div class="select-shell"><select id="game-style" name="gameStyle"><option>Quick quiz</option><option>Flashcard sprint</option><option>Challenge mode</option></select><span aria-hidden="true">⌄</span></div>
-                </div>
-
-                <button class="primary-button" id="generate-button" type="submit"><span>Build my game</span><span class="button-arrow">↗</span></button>
-                <div class="thinking-state" id="thinking-state" hidden><span class="spinner"></span> Shaping your study round…</div>
-                <p class="privacy-note"><span aria-hidden="true">✦</span> Your notes go to the AI only when you press the button. Your key stays on this computer.</p>
-                <p class="form-message" id="form-message" role="status"></p>
-              </form>
-            </div>
-
-            <aside class="side-stack">
-              <section class="library-card panel-card" id="library-card" aria-labelledby="library-title">
-                <div class="card-heading small-heading"><div><p class="eyebrow">RECENT ROUNDS</p><h2 id="library-title">My library</h2></div><span class="library-icon" aria-hidden="true">↗</span></div>
-                <div id="library-list" class="library-list"></div>
-                <p class="local-note"><span class="local-dot"></span>Saved in this browser only</p>
-              </section>
-
-              <section class="momentum-card panel-card" aria-labelledby="momentum-title">
-                <div class="momentum-topline"><span class="section-chip violet-chip">THE QUIBLY LOOP</span><span class="momentum-orb" aria-hidden="true">✦</span></div>
-                <h2 id="momentum-title">A little progress<br /><span>still counts.</span></h2>
-                <p>Every round gives you a clearer next step. Keep it light, keep going.</p>
-                <div class="momentum-track" aria-hidden="true"><span></span><i></i><i></i><i></i></div>
-                <div class="momentum-labels"><span>start</span><span>learn</span><span>remember</span></div>
-              </section>
-            </aside>
+              <div class="field-group compact-field"><div class="label-row"><label for="game-style">Choose your game vibe</label><span class="field-hint">change anytime</span></div><div class="select-shell"><select id="game-style" name="gameStyle"><option>Quick quiz</option><option>Flashcard sprint</option><option>Challenge mode</option></select><span aria-hidden="true">⌄</span></div></div>
+              <button class="primary-button" id="generate-button" type="submit"><span>Generate my game</span><span class="button-arrow">▶</span></button>
+              <div class="thinking-state" id="thinking-state" hidden><span class="spinner"></span> Building your game…</div>
+              <p class="privacy-note"><span aria-hidden="true">✦</span> Your notes go to the AI only when you press the button. Your key stays on this computer.</p>
+              <p class="form-message" id="form-message" role="status"></p>
+            </form>
           </section>
 
-          <section class="results-card panel-card" id="results-panel" hidden aria-live="polite">
-            <div class="results-topline"><div><span class="section-chip green-chip">ROUND COMPLETE</span><h2 id="game-title">Study game</h2><p id="game-tagline" class="game-tagline"></p></div><div class="score-pill" id="score-pill">0 / 0 XP</div></div>
-            <div class="progress-track"><span id="progress-bar"></span></div>
-            <div class="encouragement-note"><span aria-hidden="true">✦</span><span><strong>You’re in the right place.</strong> Try your best — every answer is a clue for what to review next.</span></div>
-            <div id="questions-list" class="questions-list"></div>
-            <div class="results-footer"><span>Nice work. Take a small break when you finish.</span><button type="button" class="secondary-button" id="new-game-button">Make another game <span aria-hidden="true">↗</span></button></div>
-          </section>
-        </div>
+          <aside class="sets-sidebar">
+            <section class="library-card" aria-labelledby="library-title">
+              <div class="card-heading small-heading"><div><span class="section-kicker">YOUR COLLECTION</span><h2 id="library-title">My study sets</h2></div><span class="card-dots" aria-hidden="true">•••</span></div>
+              <div id="library-list" class="library-list"></div>
+              <p class="local-note"><span class="local-dot"></span>Saved in this browser only</p>
+            </section>
+            <section class="rewards-card" id="rewards-section" aria-labelledby="rewards-title"><div class="rewards-card-header"><span class="section-kicker">REWARDS</span><span class="reward-crown">✦</span></div><h2 id="rewards-title">Keep your<br /><span>momentum.</span></h2><div class="reward-row"><span class="reward-badge badge-green">✓</span><span><strong>First round</strong><small>Complete one game</small></span><b>+25</b></div><div class="reward-row"><span class="reward-badge badge-yellow">★</span><span><strong>Note collector</strong><small>Save three study sets</small></span><b>+50</b></div></section>
+          </aside>
+        </section>
 
-        <footer class="site-footer"><span>quibly / study, but make it a game</span><span>built for the Presidential SI Challenge <i aria-hidden="true">✦</i></span></footer>
+        <section class="results-card" id="results-panel" hidden aria-live="polite">
+          <div class="results-topline"><div><span class="section-kicker">ROUND COMPLETE</span><h2 id="game-title">Study game</h2><p id="game-tagline" class="game-tagline"></p></div><div class="score-pill" id="score-pill">0 / 0 XP</div></div>
+          <div class="progress-track"><span id="progress-bar"></span></div>
+          <div class="encouragement-note"><span aria-hidden="true">✦</span><span><strong>You’re in the right place.</strong> Try your best — every answer is a clue for what to review next.</span></div>
+          <div id="questions-list" class="questions-list"></div>
+          <div class="results-footer"><span>Nice work. Take a small break when you finish.</span><button type="button" class="secondary-button" id="new-game-button">Make another game <span aria-hidden="true">↗</span></button></div>
+        </section>
       </main>
+
+      <footer class="site-footer"><span>quibly / study, play, level up</span><span>made for the Presidential SI Challenge <i aria-hidden="true">✦</i></span></footer>
     </div>
     <script type="module" src="/app.js"></script>
   </body>

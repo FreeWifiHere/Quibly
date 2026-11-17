@@ -13,8 +13,8 @@ Then open http://127.0.0.1:8000 in a browser.
 - Version 1 turns notes into a short AI study quiz with answer choices, XP, and bonus challenges.
 - Notes can be pasted, typed, or uploaded as a TXT/MD file before building the game; Quibly infers the study topic from the notes.
 - The layout now opens with a warmer welcome, a low-pressure start cue, and encouraging quiz feedback.
-- The visual system now uses softer mint, peach, lavender, and navy colors with a rounder, friendlier type hierarchy.
-- The interface now uses a premium dark study-desk redesign with a sidebar, responsive workspace, animated focus scene, study ritual steps, library panel, and polished quiz states.
+- The visual system now uses a bright arcade palette with blue, yellow, green, orange, and purple accents, rounded cards, original CSS/SVG characters, and game-first navigation.
+- The interface now centers the homepage on playable game modes, player progress, rewards, saved study sets, and a step-by-step notes-to-game flow.
 - The OpenAI key is read only by the local server from `.env`; it is never sent to the page.
 - The AI receives the full project brief from `BRIEF.md` as its instructions on every game request.
 - AI instructions now treat uploaded text as untrusted content, stay grounded in the notes, handle off-topic and unsafe requests safely, and avoid silently adding outside facts.
